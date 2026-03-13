@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Citas de {{ paciente.nombre }} — EPS CitaMédica{% endblock %}
+
+{% block content %}
+<div class="main-container">
+
+  <div class="page-header">
+    <a href="{{ url_for('consulta_cita_view') }}" class="back-link">← Nueva consulta</a>
+    <h2>Citas de {{ paciente.nombre }} {{ paciente.apellido }}</h2>
+    <p>Documento: <strong>{{ paciente.documento }}</strong> · EPS: {{ paciente.eps or '—' }}</p>
+  </div>
+
+  <div style="margin-bottom:1.25rem; display:flex; gap:.75rem; flex-wrap:wrap;">
+    <a href="{{ url_for('reservar_cita_view') }}" class="btn btn-primary">+ Nueva Cita</a>
+  </div>
+
+  {% if citas %}
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tipo</th>
+            <th>Médico</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cita in citas %}
+          <tr>
+            <td>{{ cita.id }}</td>
+            <td><span class="badge">{{ cita.tipo_cita }}</span></td>
+            <td>{{ cita.medico }}</td>
+            <td>{{ cita.fecha }}</td>
+            <td>{{ cita.hora }}</td>
+            <td>{{ cita.direccion or '—' }}</td>
+            <td class="actions-cell">
+              <a href="{{ url_for('actualizar_cita_view', cita_id=cita.id) }}"
+                 class="btn btn-sm btn-outline">Editar</a>
+              <form method="POST"
+                    action="{{ url_for('eliminar_cita_view', cita_id=cita.id) }}"
+                    style="display:inline;"
+                    onsubmit="return confirm('¿Eliminar esta cita?')">
+                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>Este paciente no tiene citas registradas.</p>
+      <a href="{{ url_for('reservar_cita_view') }}" class="btn btn-primary">Reservar primera cita</a>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

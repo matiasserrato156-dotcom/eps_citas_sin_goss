@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Consultar Cita — EPS CitaMédica{% endblock %}
+
+{% block content %}
+<div class="main-container" style="max-width:520px;">
+
+  <div class="page-header">
+    <a href="{{ url_for('index') }}" class="back-link">← Volver al inicio</a>
+    <h2>Consultar Cita</h2>
+    <p>Ingresa tu número de documento para ver tus citas registradas.</p>
+  </div>
+
+  <div class="form-card">
+    <form method="POST" action="{{ url_for('consulta_cita_view') }}" novalidate>
+      <div class="form-group">
+        <label for="documento">Número de Documento</label>
+        <input type="text" id="documento" name="documento" required
+               maxlength="20" placeholder="Ej: 1234567890" autofocus />
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">
+        🔍 Buscar Citas
+      </button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

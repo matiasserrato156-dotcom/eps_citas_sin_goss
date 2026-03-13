@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Inicio — EPS CitaMédica{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"> Sistema de Gestión Médica</div>
+  <h1>Bienvenido a <span>CitaMédica</span></h1>
+  <p>Plataforma digital para gestionar citas médicas de manera rápida, segura y eficiente.</p>
+</section>
+
+<!-- CARDS DE ACCIONES -->
+<div class="cards-grid">
+
+  <a href="{{ url_for('registro_paciente') }}" class="action-card">
+    <div class="card-icon blue"></div>
+    <h3>Registrar Paciente</h3>
+    <p>Ingresa los datos personales y EPS de un nuevo paciente al sistema.</p>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="{{ url_for('reservar_cita_view') }}" class="action-card">
+    <div class="card-icon teal"></div>
+    <h3>Reservar Cita</h3>
+    <p>Asigna una cita médica con fecha, hora, médico y tipo de atención.</p>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="{{ url_for('consulta_cita_view') }}" class="action-card">
+    <div class="card-icon green"></div>
+    <h3>Consultar Cita</h3>
+    <p>Consulta la información de tu cita ingresando tu número de documento.</p>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="{{ url_for('consulta_cita_view') }}" class="action-card">
+    <div class="card-icon orange"></div>
+    <h3>Actualizar Cita</h3>
+    <p>Modifica la fecha, hora, médico o tipo de cita de una cita existente.</p>
+    <div class="card-arrow">→</div>
+  </a>
+
+</div>
+
+<!-- INFO SECTION -->
+<div style="max-width:960px; margin: 0 auto 3rem; padding: 0 1.5rem;">
+  <div style="background:white; border-radius:14px; padding:2rem; box-shadow:0 4px 20px rgba(10,37,64,.08); border:1px solid #e2e8f0;">
+    <h2 style="font-family:'DM Serif Display',serif; color:#0a2540; margin-bottom:1rem; font-size:1.4rem;">
+      ¿Cómo funciona el sistema?
+    </h2>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1.5rem;">
+      <div style="display:flex; gap:.85rem; align-items:flex-start;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#e8f0ff;display:flex;align-items:center;justify-content:center;font-weight:800;color:#1a6cf6;flex-shrink:0;">1</div>
+        <div>
+          <h4 style="font-size:.95rem;margin-bottom:.25rem;color:#1e293b;">Registra al paciente</h4>
+          <p style="font-size:.85rem;color:#64748b;line-height:1.5;">Ingresa la información personal del paciente incluyendo su EPS asignada.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:.85rem; align-items:flex-start;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#e0f7fa;display:flex;align-items:center;justify-content:center;font-weight:800;color:#00b4d8;flex-shrink:0;">2</div>
+        <div>
+          <h4 style="font-size:.95rem;margin-bottom:.25rem;color:#1e293b;">Reserva la cita</h4>
+          <p style="font-size:.85rem;color:#64748b;line-height:1.5;">Asigna médico, tipo de cita, fecha, hora y dirección de la EPS.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:.85rem; align-items:flex-start;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#e6fff6;display:flex;align-items:center;justify-content:center;font-weight:800;color:#00c896;flex-shrink:0;">3</div>
+        <div>
+          <h4 style="font-size:.95rem;margin-bottom:.25rem;color:#1e293b;">Consulta o actualiza</h4>
+          <p style="font-size:.85rem;color:#64748b;line-height:1.5;">Busca por documento para ver o modificar los datos de la cita.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

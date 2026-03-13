@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Registrar Paciente — EPS CitaMédica{% endblock %}
+
+{% block content %}
+<div class="main-container">
+
+  <div class="page-header">
+    <a href="{{ url_for('index') }}" class="back-link">← Volver al inicio</a>
+    <h2>Registrar Nuevo Paciente</h2>
+    <p>Completa los datos personales del paciente para agregarlo al sistema.</p>
+  </div>
+
+  <div class="form-card">
+    <form method="POST" action="{{ url_for('registro_paciente') }}" novalidate>
+
+      <div class="form-section-title">👤 Datos Personales</div>
+
+      <div class="form-group">
+        <label for="documento">Número de Documento *</label>
+        <input type="text" id="documento" name="documento" required maxlength="20"
+               placeholder="Ej: 1234567890" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" name="nombre" required maxlength="100"
+                 placeholder="Ej: Juan" />
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido *</label>
+          <input type="text" id="apellido" name="apellido" required maxlength="100"
+                 placeholder="Ej: Pérez" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" maxlength="20"
+                 placeholder="Ej: 3001234567" />
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo Electrónico</label>
+          <input type="email" id="correo" name="correo" maxlength="120"
+                 placeholder="Ej: juan@correo.com" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="eps">EPS</label>
+        <select id="eps" name="eps">
+          <option value="">— Selecciona EPS —</option>
+          {% for e in ['Sura','Sanitas','Nueva EPS','Compensar','Famisanar','Coomeva','Salud Total','Medimás','Coosalud','Otro'] %}
+          <option value="{{ e }}">{{ e }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg">
+        ✅ Registrar Paciente
+      </button>
+
+    </form>
+  </div>
+
+</div>
+{% endblock %}

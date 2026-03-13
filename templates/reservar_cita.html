@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Reservar Cita — EPS CitaMédica{% endblock %}
+
+{% block content %}
+<div class="main-container">
+
+  <div class="page-header">
+    <a href="{{ url_for('index') }}" class="back-link">← Volver al inicio</a>
+    <h2>Reservar Cita Médica</h2>
+    <p>Ingresa los datos para asignar una nueva cita al paciente.</p>
+  </div>
+
+  <div class="form-card">
+    <form method="POST" action="{{ url_for('reservar_cita_view') }}" novalidate>
+
+      <div class="form-section-title">🪪 Datos del Paciente</div>
+
+      <div class="form-group">
+        <label for="documento">Número de Documento *</label>
+        <input type="text" id="documento" name="documento" required maxlength="20"
+               placeholder="El paciente debe estar registrado previamente" />
+      </div>
+
+      <div class="form-section-title" style="margin-top:1.5rem;">🩺 Datos de la Cita</div>
+
+      <div class="form-group">
+        <label for="medico">Médico Asignado *</label>
+        <input type="text" id="medico" name="medico" required maxlength="100"
+               placeholder="Ej: Dr. Carlos Ramos" />
+      </div>
+
+      <div class="form-group">
+        <label for="tipo_cita">Tipo de Cita *</label>
+        <select id="tipo_cita" name="tipo_cita" required>
+          <option value="">— Selecciona tipo —</option>
+          {% for tipo in ['General','Odontología','Especialista','Urgencias','Pediatría','Ginecología','Cardiología','Laboratorio'] %}
+          <option value="{{ tipo }}">{{ tipo }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fecha">Fecha *</label>
+          <input type="date" id="fecha" name="fecha" required />
+        </div>
+        <div class="form-group">
+          <label for="hora">Hora *</label>
+          <input type="time" id="hora" name="hora" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="direccion">Dirección EPS</label>
+        <input type="text" id="direccion" name="direccion" maxlength="200"
+               placeholder="Ej: Cra 15 #45-20, Bogotá" />
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg">
+        📅 Reservar Cita
+      </button>
+
+    </form>
+  </div>
+
+</div>
+{% endblock %}
